@@ -53,6 +53,15 @@ class _ExpensesState extends State<Expenses> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          title: const Text('budget app'),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
         body: Column(
           children: [
             Text('Chart'),
@@ -60,6 +69,10 @@ class _ExpensesState extends State<Expenses> {
               child: ExpensesList(expenses: _expenses),
             ),
           ],
+        ),
+        floatingActionButton: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.add),
         ),
       ),
     );
