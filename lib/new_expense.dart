@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'expense_data.dart';
 
 class NewExpense extends StatefulWidget {
-  const NewExpense({super.key});
+  const NewExpense({super.key, required this.onAddExpense});
+
+  final void Function(ExpenseData newExpense) onAddExpense;
 
   @override
   State<NewExpense> createState() => _NewExpenseState();
@@ -42,21 +44,42 @@ class _NewExpenseState extends State<NewExpense> {
         _amountStoring <= 0 ||
         _amountStoring == null ||
         _dateStoring == null) {
-      print('invalid input');
-    } else {
-      print(_textStoring);
-      print(_amountStoring);
-      print(_categoryStoring);
-      print(formator.format(_dateStoring!));
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: const Text('Invalid Input'),
+          content: const Text('Please enter a valid title, amount and date!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Okay'),
+            )
+          ],
+        ),
+      );
+      return;
     }
+    widget.onAddExpense(
+      ExpenseData(
+        title: _textStoring,
+        amount: _amountStoring,
+        date: _dateStoring!,
+        category: _categoryStoring,
+      ),
+    );
+    Navigator.pop(context);
   }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.fromLTRB(15, 80, 15, 15),
       child: Column(
         children: [
+          Text('Add New Expense',
+              style: Theme.of(context).textTheme.titleLarge),
           TextField(
             maxLength: 50,
             decoration: const InputDecoration(

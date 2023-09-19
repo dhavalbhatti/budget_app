@@ -50,10 +50,17 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _addNewExpense(ExpenseData newExpense) {
+    setState(() {
+      _expenses.add(newExpense);
+    });
+  }
+
   void _openDrawer() {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
-      builder: (ctx) => const NewExpense(),
+      builder: (ctx) => NewExpense(onAddExpense: _addNewExpense),
     );
   }
 
