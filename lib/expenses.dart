@@ -1,5 +1,6 @@
 import 'package:budget_app/expense_data.dart';
 import 'package:budget_app/expenses_list.dart';
+import 'package:budget_app/new_expense.dart';
 import 'package:flutter/material.dart';
 
 class Expenses extends StatefulWidget {
@@ -49,6 +50,13 @@ class _ExpensesState extends State<Expenses> {
     ),
   ];
 
+  void _openDrawer() {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const NewExpense(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -57,8 +65,10 @@ class _ExpensesState extends State<Expenses> {
           title: const Text('budget app'),
           actions: [
             IconButton(
-              onPressed: () {},
               icon: const Icon(Icons.add),
+              onPressed: () {
+                _openDrawer();
+              },
             ),
           ],
         ),
@@ -71,8 +81,12 @@ class _ExpensesState extends State<Expenses> {
           ],
         ),
         floatingActionButton: IconButton(
-          onPressed: () {},
           icon: const Icon(Icons.add),
+          onPressed: () {
+            setState(() {
+              _openDrawer();
+            });
+          },
         ),
       ),
     );

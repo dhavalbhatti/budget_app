@@ -16,7 +16,7 @@ class ExpenseCard extends StatelessWidget {
             Text(expenses.title),
             Row(
               children: [
-                Text('\$ ${expenses.amount.toStringAsFixed(2)}'),
+                Text('₹ ${expenses.amount.toStringAsFixed(2)}'),
                 const Spacer(),
                 Text(
                   formator.format(expenses.date),

@@ -21,7 +21,7 @@ const categoryIcons = {
   Category.clothing: Icons.shopping_bag,
   Category.entertainment: Icons.movie,
   Category.travel: Icons.flight,
-  Category.others: Icons.attach_money,
+  Category.others: Icons.currency_rupee,
 };
 
 class ExpenseData {
